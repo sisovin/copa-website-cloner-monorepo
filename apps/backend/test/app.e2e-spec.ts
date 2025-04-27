@@ -50,4 +50,24 @@ describe('AppController (e2e)', () => {
     expect(jobs.length).toBe(1);
     expect(jobs[0].url).toBe(url);
   });
+
+  it('/status/:id (GET)', async () => {
+    const url = 'https://example.com';
+    const job = new WebsiteJob();
+    job.url = url;
+    job.status = 'completed';
+    job.result = '<html>...</html>';
+    await repository.save(job);
+
+    const response = await request(app.getHttpServer())
+      .get(`/website-cloner/status/${job.id}`)
+      .expect(200);
+
+    expect(response.body).toEqual({
+      id: job.id,
+      url: job.url,
+      status: job.status,
+      result: job.result,
+    });
+  });
 });
