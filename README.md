@@ -1,2 +1,1 @@
-# copa-website-cloner-monorepo
-A repository for cloning websites using Nest.js
+This repository is empty. Any task executed on it should be considered a new capability and needs to be created.
